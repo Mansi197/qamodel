@@ -1,3 +1,5 @@
+  import socket
+print(socket.gethostbyname(socket.getfqdn(socket.gethostname())))
 from flask import Flask, render_template,flash,redirect,url_for,session,request,logging,make_response
 from wtforms import Form,StringField,TextAreaField,SelectField,PasswordField,validators,IntegerField,DateField
 from passlib.hash import sha256_crypt
@@ -112,4 +114,5 @@ def about():
 if __name__ == '__main__':
     app.secret_key='1234'
     app.run(debug=True)
-    
+import threading
+threading.Thread(target=app.run, kwargs={'host':'0.0.0.03','port':50}).start()
